@@ -3,7 +3,8 @@
 
   angular
     .module('doneyet.core', [
-        'ionic'
+        'ionic',
+        'ngStorage'
       //'ngMaterial',
       //'ngMaterialDatePicker',
       //'ngMessages',
