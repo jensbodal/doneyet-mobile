@@ -26,11 +26,12 @@
                 }
             })
             .state('doneyet.timer', {
-                url: '/playlists/:playlistId',
+                url: '/timers/timer',
                 views: {
                     'menuContent': {
-                        templateUrl: 'app/timers/playlist.html',
-                        controller: 'PlaylistCtrl'
+                        templateUrl: 'app/timers/timer/timer.html',
+                        controller: 'TimerController',
+                        controllerAs: 'vm'
                     }
                 }
             });
