@@ -3,9 +3,10 @@
     angular.module(
         'doneyet',
         [
-            'ionic',
             'starter.controllers',
-            'doneyet.playlists'
+            'doneyet.core',
+            'doneyet.playlists',
+            'doneyet.shared'
         ]
     )
     .run(run)

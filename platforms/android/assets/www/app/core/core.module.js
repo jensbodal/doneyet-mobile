@@ -3,10 +3,11 @@
 
   angular
     .module('doneyet.core', [
-      'ngMaterial',
-      'ngMaterialDatePicker',
-      'ngMessages',
-      'ngStorage',
-      'ui.router'
+        'ionic'
+      //'ngMaterial',
+      //'ngMaterialDatePicker',
+      //'ngMessages',
+      //'ngStorage',
+      //'ui.router'
     ]);
 })();
