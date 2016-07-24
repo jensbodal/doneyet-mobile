@@ -5,9 +5,8 @@
         [
             'starter.controllers',
             'doneyet.core',
-            'doneyet.playlists',
-            'doneyet.shared',
-            'doneyet.timer'
+            'doneyet.timers',
+            'doneyet.shared'
         ]
     )
     .run(run)

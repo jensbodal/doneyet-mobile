@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('doneyet.playlists')
+        .module('doneyet.timers')
         .config(PlaylistsConfig);
 
     PlaylistsConfig.$inject = [
@@ -15,21 +15,21 @@
         $urlRouterProvider.otherwise('/app/playlists');
 
         $stateProvider
-            .state('doneyet.playlists', {
+            .state('doneyet.timers', {
                 url: '/playlists',
                 views: {
                     'menuContent': {
-                        templateUrl: 'app/playlists/playlists.html',
-                        controller: 'PlaylistsController',
+                        templateUrl: 'app/timers/timers.html',
+                        controller: 'TimersController',
                         controllerAs: 'vm'
                     }
                 }
             })
-            .state('doneyet.single', {
+            .state('doneyet.timer', {
                 url: '/playlists/:playlistId',
                 views: {
                     'menuContent': {
-                        templateUrl: 'app/playlists/playlist.html',
+                        templateUrl: 'app/timers/playlist.html',
                         controller: 'PlaylistCtrl'
                     }
                 }
