@@ -14,7 +14,10 @@
     function TimersController($scope, $state, TimerService) {
         var vm = this;
         var init = init;
-        vm.timers;
+
+        vm.timers = [];
+
+        vm.loadTimer = loadTimer;
 
         init();
 
@@ -22,6 +25,11 @@
             TimerService.loadTimers().then(function () {
                 vm.timers = TimerService.getTimers();
             })
+        }
+
+        function loadTimer(timer) {
+            console.log(timer);
+            $state.go('doneyet.timer', { timer: timer });
         }
     }
 })();

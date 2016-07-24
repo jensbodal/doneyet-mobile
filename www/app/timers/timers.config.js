@@ -27,6 +27,9 @@
             })
             .state('doneyet.timer', {
                 url: '/timers/timer',
+                params: {
+                    timer: null
+                },
                 views: {
                     'menuContent': {
                         templateUrl: 'app/timers/timer/timer.html',
