@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('doneyet.timers',
+    angular.module('doneyet.menu',
       [
         'doneyet.core'
       ]

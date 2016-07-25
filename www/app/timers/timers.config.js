@@ -11,12 +11,9 @@
     ];
 
     function PlaylistsConfig($stateProvider, $urlRouterProvider) {
-        // all unknown hosts go to playlists
-        $urlRouterProvider.otherwise('/app/playlists');
-
         $stateProvider
             .state('doneyet.timers', {
-                url: '/playlists',
+                url: '/timers',
                 views: {
                     'menuContent': {
                         templateUrl: 'app/timers/timers.html',

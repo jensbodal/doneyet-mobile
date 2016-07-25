@@ -12,6 +12,7 @@
 
   function AuthenticationService($http, $localStorage) {
     var service = { };
+    var baseUrl = 'http://www.jensbodal.com:8888';
 
     service.login = login;
     service.logout = logout;
@@ -24,7 +25,7 @@
         username: username
       };
       
-      return $http.post('/api/users', config).then(function success(response) {
+      return $http.post(baseUrl + '/api/users', config).then(function success(response) {
         // store login state in service
         service.loggedIn = true;
         
@@ -58,7 +59,11 @@
       // remove user from local storage and clear http auth header
       service.loggedIn = false;
       delete $localStorage.authenticatedUser;
-      $http.defaults.headers.common.Authorization = '';
+      delete $localStorage.uuid;
+      delete $localStorage.token;
+      $http.defaults.headers.common.token = '';
+      $http.defaults.headers.common.username = '';
+      $http.defaults.headers.common.uuid = '';
     }
   }
 })();

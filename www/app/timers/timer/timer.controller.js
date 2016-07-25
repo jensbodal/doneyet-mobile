@@ -11,13 +11,14 @@
 
     function TimerController($stateParams) {
         var vm = this;
+        vm.timer = $stateParams.timer;
+
         var init = init;
 
         init();
 
         function init() {
-            console.log("TIMER LO");
-            console.log($stateParams.timer);
+
         }
     }
 })();

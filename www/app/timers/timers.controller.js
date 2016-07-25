@@ -22,14 +22,23 @@
         init();
 
         function init() {
-            TimerService.loadTimers().then(function () {
-                vm.timers = TimerService.getTimers();
-            })
+            $scope.$on('$ionicView.enter', function (e) {
+                TimerService.loadTimers().then(function () {
+                    if (!angular.equals(vm.timers, TimerService.getTimers())) {
+                        vm.timers = TimerService.getTimers();
+                    }
+                })
+            });
         }
 
         function loadTimer(timer) {
-            console.log(timer);
-            $state.go('doneyet.timer', { timer: timer });
+            TimerService.getTimer(timer)
+            .then(function (response) {
+                if (!angular.equals(response, timer)) {
+                    timer = response;
+                }
+                $state.go('doneyet.timer', { timer: timer });
+            })
         }
     }
 })();

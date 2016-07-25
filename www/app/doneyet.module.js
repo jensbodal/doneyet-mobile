@@ -1,32 +1,57 @@
 (function() {
-
     angular.module(
         'doneyet',
         [
-            'starter.controllers',
             'doneyet.core',
-            'doneyet.timers',
-            'doneyet.shared'
+            'doneyet.login',
+            'doneyet.menu',
+            'doneyet.shared',
+            'doneyet.timers'
+            
         ]
     )
     .run(run)
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
+        // all unknown routes go to homepage
+        $urlRouterProvider.otherwise('/app/login');
+
         $stateProvider
         .state('doneyet', {
             url: '/app',
             abstract: true,
             templateUrl: 'app/menu/menu.html',
-            controller: 'AppCtrl'
+            controller: 'MenuController',
+            controllerAs: 'vm'
+
         });
     });
 
     run.$inject = [
         '$http',
-        '$ionicPlatform'
+        '$ionicPlatform',
+        '$localStorage',
+        '$location',
+        '$rootScope'
     ];
-    //57945a064fc73c0b1b648cea
-    function run($http, $ionicPlatform) {
-        $http.defaults.headers.common.uuid = '57945a064fc73c0b1b648cea';
+
+    function run($http, $ionicPlatform, $localStorage, $location, $rootScope) {
+        if ($localStorage.authenticatedUser) {
+            $http.defaults.headers.common.token = $localStorage.token;
+            $http.defaults.headers.common.username = $localStorage.authenticatedUser;
+            $http.defaults.headers.common.uuid = $localStorage.uuid;
+        }
+
+        // redirect to login page if not authenticated
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // array of pages that can be loaded without authentication
+            var nonAuthPages = ['/app/login', '/login'];
+            var restrictedPages = nonAuthPages.indexOf($location.path()) === -1;
+
+            if (restrictedPages && !$localStorage.authenticatedUser) {
+                $location.path('/app/login');
+            }
+        });
+
 
         $ionicPlatform.ready(function() {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

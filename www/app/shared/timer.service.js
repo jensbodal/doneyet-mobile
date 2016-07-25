@@ -17,6 +17,7 @@
         service.addTimer = addTimer;
         service.deleteTimer = deleteTimer;
         service.getTimers = getTimers;
+        service.getTimer = getTimer;
         service.loadTimers = loadTimers;
         service.updateTimer = updateTimer;
 
@@ -42,6 +43,15 @@
 
         function getTimers() {
             return timers;
+        }
+
+        function getTimer(timer) {
+            return $http.get(baseUrl + '/api/timers/' + timer._id)
+            .then(function (response) {
+                return response.data;
+            }, function (error) {
+                console.log(error);
+            });
         }
 
         function loadTimers() {
