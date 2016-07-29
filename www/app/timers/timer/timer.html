@@ -1,8 +1,25 @@
 ﻿<ion-view view-title="Playlist">
     <ion-content>
-        <h1>Timer</h1>
-        <div ng-repeat="(key, value) in vm.timer">
-            {{key}} : {{value}}
-        </div>
+        <center><h1>{{vm.timer.name}}</h1></center>
+        <ion-input>
+            <label class="item item-input">
+                <span class="input-label">Name</span>
+                <input ng-disabled="vm.disabled" type="text" value="{{vm.timer.name}}">
+            </label>
+        </ion-input>
+
+        <ion-radio ng-disabled="vm.disabled" ng-model="vm.timer.type" value="Elapsed">Elapsed</ion-radio>
+        <ion-radio ng-disabled="vm.disabled" ng-model="vm.timer.type" value="Countdown">Countdown</ion-radio>
+        <ion-checkbox ng-disabled="vm.disabled" ng-model="vm.timer.doubleStartMode">Double Start Mode</ion-checkbox>
+        <ion-checkbox ng-disabled="vm.disabled" ng-model="vm.timer.private">Private</ion-checkbox>
+        <label class="item item-input">
+            <textarea ng-disabled="vm.disabled" ng-model="vm.timer.description" rows="3" placeholder="Description"></textarea>
+        </label>
+        <ion-toggle ng-disabled="vm.disabled" ng-model="vm.timer.alerts.sms.enabled" toggle-class="toggle-calm">SMS</ion-toggle>
+        <input ng-disabled="vm.disabled" ng-model="vm.timer.alerts.sms.value" ng-show="vm.timer.alerts.sms.enabled" type="tel" />
+        <ion-toggle ng-disabled="vm.disabled" ng-model="vm.timer.alerts.email.enabled" toggle-class="toggle-calm">Email</ion-toggle>
+        <input ng-disabled="vm.disabled" ng-model="vm.timer.alerts.email.value" ng-show="vm.timer.alerts.email.enabled" type="email" />
+        <ion-toggle ng-disabled="vm.disabled" ng-model="vm.timer.alerts.pushbullet.enabled" toggle-class="toggle-calm">Pushbullet</ion-toggle>
+        <input ng-disabled="vm.disabled" ng-model="vm.timer.alerts.pushbullet.value" ng-show="vm.timer.alerts.pushbullet.enabled" type="email" />
     </ion-content>
 </ion-view>

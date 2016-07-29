@@ -20,7 +20,7 @@
 
     return service;
 
-    function login(username, callback) {
+    function login(username) {
       var config = {
         username: username
       };

@@ -28,6 +28,7 @@
         }
 
         function login() {
+            vm.username = vm.username.toLowerCase();
             AuthenticationService.login(vm.username)
             .then(function (response) {
                 $ionicHistory.nextViewOptions({ disableBack: true });
