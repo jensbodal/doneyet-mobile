@@ -1,0 +1,10 @@
+<ion-view view-title="dashboard">
+    <ion-content>
+        <button class="disable-hover button button-default button-full" ng-click="vm.loadTimerView()">
+            View/Edit Settings
+        </button>
+        <div ng-repeat="(key, value) in vm.timer">
+            {{key}}:{{value}}
+        </div>
+    </ion-content>
+</ion-view>
