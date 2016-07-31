@@ -15,8 +15,11 @@
         var vm = this;
         var init = init;
 
+        
+
         vm.timers = [];
 
+        vm.addTimer = addTimer;
         vm.loadTimer = loadTimer;
 
         init();
@@ -31,13 +34,18 @@
             });
         }
 
+        function addTimer() {
+            var timer = {};
+            $state.go('doneyet.timer', { timer: timer, existingTimer: false });
+        }
+
         function loadTimer(timer) {
             TimerService.getTimer(timer)
             .then(function (response) {
                 if (!angular.equals(response, timer)) {
                     timer = response;
                 }
-                $state.go('doneyet.timer', { timer: timer });
+                $state.go('doneyet.timer', { timer: timer, existingTimer: true });
             })
         }
     }

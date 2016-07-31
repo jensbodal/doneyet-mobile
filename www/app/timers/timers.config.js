@@ -25,7 +25,8 @@
             .state('doneyet.timer', {
                 url: '/timers/timer',
                 params: {
-                    timer: null
+                    timer: null,
+                    existingTimer: null
                 },
                 views: {
                     'menuContent': {

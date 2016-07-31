@@ -1,10 +1,18 @@
-﻿<ion-view view-title="Playlist">
+﻿<ion-view view-title="timers">
+    <ion-nav-buttons side="primary">
+        <button ng-if="vm.disabled" class="button" ng-click="vm.disabled = !vm.disabled">
+            EDIT
+        </button>
+        <button ng-if="!vm.disabled" class="button" ng-click="vm.save()">
+            SAVE
+        </button>
+    </ion-nav-buttons>
     <ion-content>
         <center><h1>{{vm.timer.name}}</h1></center>
         <ion-input>
             <label class="item item-input">
                 <span class="input-label">Name</span>
-                <input ng-disabled="vm.disabled" type="text" value="{{vm.timer.name}}">
+                <input ng-disabled="vm.disabled" type="text" ng-model="vm.timer.name" value="{{vm.timer.name}}">
             </label>
         </ion-input>
 
@@ -19,7 +27,27 @@
         <input ng-disabled="vm.disabled" ng-model="vm.timer.alerts.sms.value" ng-show="vm.timer.alerts.sms.enabled" type="tel" />
         <ion-toggle ng-disabled="vm.disabled" ng-model="vm.timer.alerts.email.enabled" toggle-class="toggle-calm">Email</ion-toggle>
         <input ng-disabled="vm.disabled" ng-model="vm.timer.alerts.email.value" ng-show="vm.timer.alerts.email.enabled" type="email" />
-        <ion-toggle ng-disabled="vm.disabled" ng-model="vm.timer.alerts.pushbullet.enabled" toggle-class="toggle-calm">Pushbullet</ion-toggle>
-        <input ng-disabled="vm.disabled" ng-model="vm.timer.alerts.pushbullet.value" ng-show="vm.timer.alerts.pushbullet.enabled" type="email" />
+        <ion-toggle 
+            ng-disabled="vm.disabled" 
+            ng-model="vm.timer.alerts.pushbullet.enabled" 
+            toggle-class="toggle-calm"
+            >
+            Pushbullet
+        </ion-toggle>
+        <input 
+            ng-disabled="vm.disabled" 
+            ng-model="vm.timer.alerts.pushbullet.value" 
+            ng-show="vm.timer.alerts.pushbullet.enabled" 
+            type="email"
+            />
+        <br />
+        <center>
+            <button class="button" ng-click="vm.deleteTimer()">
+                DELETE
+            </button>
+            <button ng-if="!vm.disabled" class="button" ng-click="vm.save()">
+                SAVE
+            </button>
+        </center>
     </ion-content>
 </ion-view>
