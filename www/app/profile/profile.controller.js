@@ -9,10 +9,11 @@
         '$cordovaCamera',
         '$localStorage',
         '$scope',
-        '$jrCrop'
+        '$jrCrop',
+        '$timeout'
     ];
 
-    function ProfileController($cordovaCamera, $localStorage, $scope, $jrCrop) {
+    function ProfileController($cordovaCamera, $localStorage, $scope, $jrCrop, $timeout) {
         var vm = this;
         var init = init;
 
@@ -23,7 +24,7 @@
         };
 
         vm.username = $localStorage.authenticatedUser;
-        vm.profilePictureURL = 'http://i.imgur.com/Rbebmic.png';
+        //vm.profilePictureURL = 'http://i.imgur.com/Rbebmic.png';
         vm.getProfilePicture = getProfilePicture;
         vm.getPicture = getPicture;
 
@@ -31,7 +32,6 @@
 
         function init() {
             $scope.$on('$ionicView.enter', function (e) {
-                
             });
         }
 
@@ -50,7 +50,21 @@
                 function (imageData) {
                     vm.picData = imageData;
                     vm.ftFload = true;
-                    $localStorage.profilePicture = imageData;
+                    $jrCrop.crop({
+                        url: imageData,
+                        circle: true,
+                        width: 200,
+                        height: 200
+                    }).then(function (canvas) {
+                        // success!
+                        console.log(canvas.toDataURL());
+                        imageData = canvas.toDataURL();
+                        $localStorage.profilePicture = imageData;
+                    }, function () {
+                        console.log('error cropping image?');
+                        // User canceled or couldn't load image.
+                    });
+                    
                 },
                 function (err) {
                     console.log('error');

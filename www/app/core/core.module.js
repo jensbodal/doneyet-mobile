@@ -6,7 +6,6 @@
         'ionic',
         'ngCordova',
         'ngStorage',
-        'ngImgCrop',
         'jrCrop'
        
       //'ngMaterial',
