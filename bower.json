@@ -5,6 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
   "dependencies": {
-    "ngstorage": "^0.3.10"
+    "ngstorage": "^0.3.10",
+    "ngCordova": "^0.1.27-alpha",
+    "ng-img-crop": "ngImgCrop#^0.3.2"
   }
 }

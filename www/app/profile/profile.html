@@ -1,0 +1,7 @@
+<ion-view view-title="profile">
+    <ion-content>
+        <h1>Welcome {{vm.username}}!</h1>
+        <button full  class="disable-hover button button-default button-full" ng-click="vm.getPicture()">Upload Profile Picture</button>
+        <img style="width: 100%; max-width: 100px;" ng-src="{{vm.getProfilePicture()}}" />
+    </ion-content>
+</ion-view>

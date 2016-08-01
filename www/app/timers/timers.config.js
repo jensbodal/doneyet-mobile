@@ -3,14 +3,14 @@
 
     angular
         .module('doneyet.timers')
-        .config(PlaylistsConfig);
+        .config(TimersConfig);
 
-    PlaylistsConfig.$inject = [
+    TimersConfig.$inject = [
         '$stateProvider',
         '$urlRouterProvider'
     ];
 
-    function PlaylistsConfig($stateProvider, $urlRouterProvider) {
+    function TimersConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('doneyet.timers', {
                 url: '/timers',

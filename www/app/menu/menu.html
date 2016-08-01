@@ -18,10 +18,13 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-          <ion-item menu-close ng-show="vm.loggedIn()" href="#/app/timers">
+          <ion-item menu-close ng-show="vm.loggedIn()" href="" ui-sref="doneyet.profile">
+              Profile
+          </ion-item>
+          <ion-item menu-close ng-show="vm.loggedIn()" href="" ui-sref="doneyet.timers">
               Timers
           </ion-item>
-        <ion-item menu-close ng-hide="vm.loggedIn()" href="#/app/login">
+        <ion-item menu-close ng-hide="vm.loggedIn()" href="" ui-sref="doneyet.login">
             Login
         </ion-item>
         <ion-item menu-close ng-show="vm.loggedIn()" ng-click="vm.logout()">
@@ -31,4 +34,3 @@
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
-S

@@ -4,7 +4,10 @@
   angular
     .module('doneyet.core', [
         'ionic',
+        'ngCordova',
+        'ngImgCrop',
         'ngStorage'
+       
       //'ngMaterial',
       //'ngMaterialDatePicker',
       //'ngMessages',
