@@ -8,11 +8,11 @@
     ProfileController.$inject = [
         '$cordovaCamera',
         '$localStorage',
-        '$scope'
-        
+        '$scope',
+        '$jrCrop'
     ];
 
-    function ProfileController($cordovaCamera, $localStorage, $scope) {
+    function ProfileController($cordovaCamera, $localStorage, $scope, $jrCrop) {
         var vm = this;
         var init = init;
 

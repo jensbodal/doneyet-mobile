@@ -7,7 +7,8 @@
             'doneyet.menu',
             'doneyet.profile',
             'doneyet.shared',
-            'doneyet.timers'
+            'doneyet.timers',
+            'jrCrop'
             
         ]
     )

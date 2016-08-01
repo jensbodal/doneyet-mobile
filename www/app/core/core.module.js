@@ -5,8 +5,9 @@
     .module('doneyet.core', [
         'ionic',
         'ngCordova',
+        'ngStorage',
         'ngImgCrop',
-        'ngStorage'
+        'jrCrop'
        
       //'ngMaterial',
       //'ngMaterialDatePicker',

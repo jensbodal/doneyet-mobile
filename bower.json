@@ -7,6 +7,7 @@
   "dependencies": {
     "ngstorage": "^0.3.10",
     "ngCordova": "^0.1.27-alpha",
-    "ng-img-crop": "ngImgCrop#^0.3.2"
+    "ng-img-crop": "ngImgCrop#^0.3.2",
+    "jr-crop": "^1.1.2"
   }
 }
