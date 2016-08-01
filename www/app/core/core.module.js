@@ -6,7 +6,8 @@
         'ionic',
         'ngCordova',
         'ngStorage',
-        'jrCrop'
+        'jrCrop',
+        'ngImgur'
        
       //'ngMaterial',
       //'ngMaterialDatePicker',

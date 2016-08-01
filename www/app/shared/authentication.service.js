@@ -17,10 +17,13 @@
     service.login = login;
     service.logout = logout;
     service.loggedIn = false;
+    service.username = '';
+    
 
     return service;
 
     function login(username) {
+        service.username = username;
       var config = {
         username: username
       };

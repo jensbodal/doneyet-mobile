@@ -9,12 +9,13 @@
         '$ionicLoading',
         '$ionicHistory',
         '$location',
+        '$localStorage',
         '$state',
         '$timeout',
         'AuthenticationService'
     ];
 
-    function LoginController($ionicLoading, $ionicHistory, $location, $state, $timeout, AuthenticationService) {
+    function LoginController($ionicLoading, $ionicHistory, $location, $localStorage, $state, $timeout, AuthenticationService) {
         var vm = this;
 
         vm.username = '';
@@ -57,7 +58,7 @@
         init();
 
         function init() {
-
+            
         }
 
     }

@@ -6,14 +6,18 @@
     .controller('ProfileController', ProfileController);
 
     ProfileController.$inject = [
+        'AuthenticationService',
         '$cordovaCamera',
         '$localStorage',
         '$scope',
         '$jrCrop',
-        '$timeout'
+        '$timeout',
+        'imgur'
     ];
 
-    function ProfileController($cordovaCamera, $localStorage, $scope, $jrCrop, $timeout) {
+    function ProfileController(
+        AuthenticationService, $cordovaCamera, $localStorage, $scope, $jrCrop, $timeout, imgur) {
+        imgur.setAPIKey('Client-ID 40dbfe0cfea73a7');
         var vm = this;
         var init = init;
 
@@ -23,8 +27,11 @@
             sourceType: Camera.PictureSourceType.CAMERA
         };
 
-        vm.username = $localStorage.authenticatedUser;
-        //vm.profilePictureURL = 'http://i.imgur.com/Rbebmic.png';
+        vm.username = AuthenticationService.username;
+        if (!$localStorage[vm.username]) {
+            $localStorage[vm.username] = {};
+        }
+        //vm.profilePi1ctureURL = 'http://i.imgur.com/Rbebmic.png';
         vm.getProfilePicture = getProfilePicture;
         vm.getPicture = getPicture;
 
@@ -32,15 +39,19 @@
 
         function init() {
             $scope.$on('$ionicView.enter', function (e) {
+                vm.username = AuthenticationService.username;
+                if (!$localStorage[vm.username]) {
+                    $localStorage[vm.username] = {};
+                }
             });
         }
 
         function getProfilePicture() {
-            if ($localStorage.profilePicture) {
-                return $localStorage.profilePicture;
+            if ($localStorage[vm.username].profilePicture) {
+                return $localStorage[vm.username].profilePicture;
             }
             else {
-                return 'http://i.imgur.com/Rbebmic.png';
+                return 'http://i.imgur.com/lFuyoJF.png';
             }
         }
 
@@ -59,7 +70,11 @@
                         // success!
                         console.log(canvas.toDataURL());
                         imageData = canvas.toDataURL();
-                        $localStorage.profilePicture = imageData;
+                        canvas.toBlob(function (image) {
+                            imgur.upload(image).then(function (model) {
+                                $localStorage[vm.username].profilePicture = model.link;
+                            });
+                        });
                     }, function () {
                         console.log('error cropping image?');
                         // User canceled or couldn't load image.
