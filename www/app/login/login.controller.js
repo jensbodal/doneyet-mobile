@@ -48,6 +48,7 @@
             .then(function (response) {
                 if (response) {
                     console.log("LOGGED  IN");
+                    $ionicHistory.nextViewOptions({ disableBack: true });
                     $state.go('doneyet.timers');
                 }
                 else {
@@ -85,6 +86,10 @@
         init();
 
         function init() {
+            $scope.$on("$ionicView.enter", function () {
+                $ionicHistory.clearCache();
+                $ionicHistory.clearHistory();
+            });
         }
 
     }
