@@ -51,7 +51,8 @@
                 return $localStorage[vm.username].profilePicture;
             }
             else {
-                return 'http://i.imgur.com/lFuyoJF.png';
+                //return 'http://i.imgur.com/lFuyoJF.png';
+                return 'http://i.imgur.com/SLMiUO9.jpg';
             }
         }
 

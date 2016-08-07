@@ -18,8 +18,8 @@
 
         <ion-radio ng-disabled="vm.disabled" ng-model="vm.timer.type" value="Elapsed">Elapsed</ion-radio>
         <ion-radio ng-disabled="vm.disabled" ng-model="vm.timer.type" value="Countdown">Countdown</ion-radio>
-        <ion-checkbox ng-disabled="vm.disabled" ng-model="vm.timer.doubleStartMode">Double Start Mode</ion-checkbox>
-        <ion-checkbox ng-disabled="vm.disabled" ng-model="vm.timer.private">Private</ion-checkbox>
+        <ion-toggle ng-disabled="vm.disabled" ng-model="vm.timer.doubleStartMode">Double Start Mode</ion-toggle>
+        <ion-toggle ng-disabled="vm.disabled" ng-model="vm.timer.private">Private</ion-toggle>
         <label class="item item-input">
             <textarea ng-disabled="vm.disabled" ng-model="vm.timer.description" rows="3" placeholder="Description"></textarea>
         </label>

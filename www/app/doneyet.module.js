@@ -30,28 +30,43 @@
 
     run.$inject = [
         '$http',
+        '$ionicHistory',
+        '$ionicLoading',
         '$ionicPlatform',
         '$localStorage',
         '$location',
         '$rootScope',
+        '$state',
+        '$timeout',
         'AuthenticationService'
     ];
 
-    function run($http, $ionicPlatform, $localStorage, $location, $rootScope, AuthenticationService) {
-        if ($localStorage.authenticatedUser) {
+    function run(
+        $http,
+        $ionicHistory,
+        $ionicLoading,
+        $ionicPlatform,
+        $localStorage,
+        $location,
+        $rootScope,
+        $state,
+        $timeout,
+        AuthenticationService
+        )
+    {
+        // if we already have a token cached then use that
+        if ($localStorage.token) {
             $http.defaults.headers.common.token = $localStorage.token;
-            $http.defaults.headers.common.username = $localStorage.authenticatedUser;
-            $http.defaults.headers.common.uuid = $localStorage.uuid;
         }
 
         // redirect to login page if not authenticated
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // array of pages that can be loaded without authentication
-            var nonAuthPages = ['/app/login', '/login'];
+            var nonAuthPages = ['/app/login', '/login', '/app/logout', '/logout'];
             var restrictedPages = nonAuthPages.indexOf($location.path()) === -1;
 
-            if (restrictedPages && !$localStorage.authenticatedUser) {
-                $location.path('/app/login');
+            if (restrictedPages && !$localStorage.token) {
+                $state.go('doneyet.login');
             }
         });
 

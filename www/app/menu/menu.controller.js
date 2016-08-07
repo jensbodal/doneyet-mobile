@@ -7,10 +7,13 @@
 
     MenuController.$inject = [
         '$state',
-        'AuthenticationService'
+        'AuthenticationService',
+        '$timeout',
+        '$ionicLoading',
+        '$ionicHistory'
     ];
 
-    function MenuController($state, AuthenticationService) {
+    function MenuController($state, AuthenticationService, $timeout, $ionicLoading, $ionicHistory) {
         var vm = this;
         vm.loggedIn = loggedIn;
         vm.logout = logout;
@@ -28,8 +31,7 @@
         init();
 
         function init() {
-
+            console.log("menu init");
         }
-
     }
 })();

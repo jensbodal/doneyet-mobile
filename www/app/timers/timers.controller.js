@@ -26,6 +26,7 @@
 
         function init() {
             $scope.$on('$ionicView.enter', function (e) {
+                vm.timers = [];
                 TimerService.loadTimers().then(function () {
                     if (!angular.equals(vm.timers, TimerService.getTimers())) {
                         vm.timers = TimerService.getTimers();
