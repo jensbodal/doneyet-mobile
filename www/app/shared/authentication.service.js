@@ -53,7 +53,7 @@
         return (promiseResponse);
       }, function error(response) {
         console.log("ERROR: " + response);
-        return response;
+        return false;
       });
 
     }

@@ -8,14 +8,26 @@
     LoginController.$inject = [
         '$ionicLoading',
         '$ionicHistory',
+        '$ionicPopup',
         '$location',
         '$localStorage',
+        '$scope',
         '$state',
         '$timeout',
         'AuthenticationService'
     ];
 
-    function LoginController($ionicLoading, $ionicHistory, $location, $localStorage, $state, $timeout, AuthenticationService) {
+    function LoginController(
+        $ionicLoading,
+        $ionicHistory,
+        $ionicPopup,
+        $location,
+        $localStorage,
+        $scope,
+        $state,
+        $timeout,
+        AuthenticationService
+        ) {
         var vm = this;
 
         vm.username = '';
@@ -33,8 +45,24 @@
             vm.username = vm.username.toLowerCase();
             AuthenticationService.login(vm.username, vm.password)
             .then(function (response) {
-                $ionicHistory.nextViewOptions({ disableBack: true });
-                $state.go('doneyet.timers');
+                if (response) {
+                    $ionicHistory.nextViewOptions({ disableBack: true });
+                    $state.go('doneyet.timers');
+                }
+                else {
+                    console.log("Error logging in");
+                    $ionicPopup.show({
+                        title: 'Incorrect Credentials!',
+                        subTitle: 'Check your username and password',
+                        scope: $scope,
+                        buttons: [
+                          {
+                              text: '<b>OK</b>',
+                              type: 'button-positive'
+                          }
+                        ]
+                    });
+                }
             }, function (error) {
                 console.log("Error logging in");
                 console.log(error);
