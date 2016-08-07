@@ -7,10 +7,16 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.doneyet"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.doneyet"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.doneyet"
+        },
+        "cordova-plugin-image-picker": {
             "PACKAGE_NAME": "com.ionicframework.doneyet"
         },
         "cordova-plugin-statusbar": {
@@ -20,12 +26,6 @@
             "PACKAGE_NAME": "com.ionicframework.doneyet"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.doneyet"
-        },
-        "cordova-plugin-image-picker": {
-            "PACKAGE_NAME": "com.ionicframework.doneyet"
-        },
-        "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.ionicframework.doneyet"
         }
     },
