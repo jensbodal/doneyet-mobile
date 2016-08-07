@@ -87,7 +87,12 @@
         init();
 
         function init() {
-            
+            $scope.$on('$ionicView.enter', function (e) {
+                vm.username = '';
+                vm.password = '';
+                $ionicHistory.clearCache();
+                $ionicHistory.clearHistory();
+            });
         }
 
     }
