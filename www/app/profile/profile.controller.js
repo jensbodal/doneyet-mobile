@@ -24,7 +24,10 @@
         var options = {
             quality: 50,
             destinationType: Camera.DestinationType.FILE_URI,
-            sourceType: Camera.PictureSourceType.CAMERA
+            sourceType: Camera.PictureSourceType.CAMERA,
+            targetWidth: 512,
+            targetHeight: 512,
+            correctOrientation: true
         };
 
         vm.username = AuthenticationService.username;
