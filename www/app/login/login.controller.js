@@ -81,7 +81,7 @@
                 $ionicHistory.clearCache();
                 $ionicHistory.clearHistory();
                 $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
-            }, 30);
+            }, 0);
         }
 
         init();
