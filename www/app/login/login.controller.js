@@ -19,6 +19,7 @@
         var vm = this;
 
         vm.username = '';
+        vm.password = '';
 
         vm.closeLogin = closeLogin;
         vm.login = login;
@@ -30,7 +31,7 @@
 
         function login() {
             vm.username = vm.username.toLowerCase();
-            AuthenticationService.login(vm.username)
+            AuthenticationService.login(vm.username, vm.password)
             .then(function (response) {
                 $ionicHistory.nextViewOptions({ disableBack: true });
                 $state.go('doneyet.timers');

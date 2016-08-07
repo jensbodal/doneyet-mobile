@@ -22,13 +22,14 @@
 
     return service;
 
-    function login(username) {
+    function login(username, password) {
         service.username = username;
       var config = {
-        username: username
+        username: username,
+        password: password
       };
       
-      return $http.post(baseUrl + '/api/users', config).then(function success(response) {
+      return $http.post(baseUrl + '/api/authenticate', config).then(function success(response) {
         // store login state in service
         service.loggedIn = true;
         
