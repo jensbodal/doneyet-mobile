@@ -14,7 +14,8 @@
         '$scope',
         '$state',
         '$timeout',
-        'AuthenticationService'
+        'AuthenticationService',
+        'TimerService'
     ];
 
     function LoginController(
@@ -26,7 +27,8 @@
         $scope,
         $state,
         $timeout,
-        AuthenticationService
+        AuthenticationService,
+        TimerService
         ) {
         var vm = this;
 
@@ -46,7 +48,17 @@
             AuthenticationService.login(vm.username, vm.password)
             .then(function (response) {
                 if (response) {
+                    $localStorage.$reset();
                     $ionicHistory.nextViewOptions({ disableBack: true });
+                    if (!$localStorage[vm.username]) {
+                        $localStorage[vm.username] = {};
+                    }
+                    TimerService.getProfilePicture()
+                    .then(function (response) {
+                        $localStorage[vm.username].profilePicture = response.data.profilePicture;
+                    }, function (error) {
+                        $localStorage[vm.username].profilePicture = 'http://i.imgur.com/lFuyoJF.png';
+                    });
                     $state.go('doneyet.timers');
                 }
                 else {
@@ -70,6 +82,7 @@
         }
 
         function logout() {
+            $localStorage.$reset();
             $ionicLoading.show({
                 template: 'Logging out...'
             });

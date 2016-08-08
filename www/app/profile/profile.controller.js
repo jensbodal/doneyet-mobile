@@ -7,6 +7,7 @@
 
     ProfileController.$inject = [
         'AuthenticationService',
+        'TimerService',
         '$cordovaCamera',
         '$localStorage',
         '$scope',
@@ -16,10 +17,11 @@
     ];
 
     function ProfileController(
-        AuthenticationService, $cordovaCamera, $localStorage, $scope, $jrCrop, $timeout, imgur) {
+        AuthenticationService,  TimerService, $cordovaCamera, $localStorage, $scope, $jrCrop, $timeout, imgur) {
         imgur.setAPIKey('Client-ID 40dbfe0cfea73a7');
         var vm = this;
         var init = init;
+        vm.profilePicture = 'http://i.imgur.com/lFuyoJF.png';
 
         var options = {
             quality: 50,
@@ -41,8 +43,17 @@
         init();
 
         function init() {
+            if (!$localStorage[vm.username]) {
+                $localStorage[vm.username] = {};
+            }
             $scope.$on('$ionicView.enter', function (e) {
                 vm.username = AuthenticationService.username;
+                if ($localStorage[vm.username].profilePicture) {
+                    vm.profilePicture = $localStorage[vm.username].profilePicture;
+                }
+                else {
+                    getProfilePicture();
+                }
                 if (!$localStorage[vm.username]) {
                     $localStorage[vm.username] = {};
                 }
@@ -50,11 +61,19 @@
         }
 
         function getProfilePicture() {
+
             if ($localStorage[vm.username].profilePicture) {
                 return $localStorage[vm.username].profilePicture;
             }
             else {
-                return 'http://i.imgur.com/lFuyoJF.png';
+                TimerService.getProfilePicture()
+                .then(function (response) {
+                    $localStorage[vm.username].profilePicture = response.data.profilePicture;
+                    vm.profilePicture = $localStorage[vm.username].profilePicture
+                }, function (error) {
+                    $localStorage[vm.username].profilePicture = 'http://i.imgur.com/lFuyoJF.png';
+                    vm.profilePicture = $localStorage[vm.username].profilePicture;
+                });
             }
         }
 
@@ -75,7 +94,14 @@
                         imageData = canvas.toDataURL();
                         canvas.toBlob(function (image) {
                             imgur.upload(image).then(function (model) {
-                                $localStorage[vm.username].profilePicture = model.link;
+                                TimerService.addProfilePicture(model.link)
+                                    .then(function () {
+                                        $localStorage[vm.username].profilePicture = model.link;
+                                        vm.profilePicture = $localStorage[vm.username].profilePicture;
+                                    }, function (error) {
+                                        console.log('error');
+                                        console.log(error);
+                                    });
                             });
                         });
                     }, function () {

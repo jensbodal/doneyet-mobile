@@ -21,7 +21,35 @@
         service.loadTimers = loadTimers;
         service.updateTimer = updateTimer;
 
+        service.addProfilePicture = addProfilePicture;
+        service.getProfilePicture = getProfilePicture;
+
         return service;
+
+        function addProfilePicture(url) {
+            var pictureData = {
+                profilePicture: url
+            };
+
+            return $http.post(baseUrl + '/api/user/profile-picture', pictureData)
+            .then(function (response) {
+                console.log('posted');
+                console.log(response);
+                return response;
+            }, function (error) {
+                console.log('error');
+                console.log(error);
+            });
+        }
+
+        function getProfilePicture() {
+            return $http.get(baseUrl + '/api/user/profile-picture')
+            .then(function (response) {
+                return response;
+            }, function (error) {
+                return error;
+            });
+        }
 
         function addTimer(timer) {
             return $http.post(baseUrl + '/api/timers', timer)
